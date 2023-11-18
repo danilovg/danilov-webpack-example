@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: './src/main.js',
+    entry: './src/index.js',
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist'),
@@ -10,7 +10,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: './src/index.html',
+            template: './public/index.html',
         }),
     ],
     module: {
@@ -22,6 +22,17 @@ module.exports = {
             {
                 test: /\.css$/i,
                 use: ['style-loader', 'css-loader']
+            },
+            {
+                test: /\.js?$/,
+                exclude: /node_modules/,
+                use: { loader: "babel-loader" },
+            },
+            {
+                test: /\.jsx?$/,
+                exclude: /(node_modules)/,
+                loader: "babel-loader",
+                options: { presets: ["@babel/preset-react"] },
             },
         ],
     },
