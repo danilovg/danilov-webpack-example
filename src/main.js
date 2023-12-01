@@ -1,2 +1,2 @@
 import './styles.css';
-console.log('Webpack example');
+console.log('Parcel example');
